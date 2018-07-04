@@ -56,17 +56,17 @@ class Name implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getMiddle(): string
+    public function getMiddle(): ?string
     {
         return $this->middle;
     }
 
     /**
-     * @param string $middle
+     * @param null|string $middle
      */
-    public function setMiddle(string $middle): void
+    public function setMiddle(?string $middle): void
     {
         $this->middle = $middle;
     }
@@ -88,17 +88,17 @@ class Name implements \JsonSerializable
     }
 
     /**
-     * @return string
+     * @return null|string
      */
-    public function getMaiden(): string
+    public function getMaiden(): ?string
     {
         return $this->maiden;
     }
 
     /**
-     * @param string $maiden
+     * @param null|string $maiden
      */
-    public function setMaiden(string $maiden): void
+    public function setMaiden(?string $maiden): void
     {
         $this->maiden = $maiden;
     }

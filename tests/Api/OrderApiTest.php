@@ -29,6 +29,8 @@ class OrderApiTest extends TestCase
         $order = $manager->getOrder($orderId);
 
         $this->assertEquals($orderId, $order->getId());
+        // Stop order
+        $manager->postOrderStop($orderId);
     }
 
     /**
@@ -48,6 +50,8 @@ class OrderApiTest extends TestCase
         $url = $manager->getOrderPublicUrl($orderId);
 
         $this->assertNotNull($url);
+        // Stop order
+        $manager->postOrderStop($orderId);
     }
 
     /**
@@ -70,6 +74,8 @@ class OrderApiTest extends TestCase
         $result = true;
 
         $this->assertNotNull($result);
+        // Stop order
+        $manager->postOrderStop($orderId);
     }
 
     /**
@@ -89,6 +95,8 @@ class OrderApiTest extends TestCase
         $orderStatus = $manager->getOrderStatus($orderId);
 
         $this->assertEquals(0, $orderStatus->getStatus());
+        // Stop order
+        $manager->postOrderStop($orderId);
     }
 
     /**
@@ -109,27 +117,8 @@ class OrderApiTest extends TestCase
         $orderStatus = $manager->getOrderStatus($orderId);
 
         $this->assertEquals(2, $orderStatus->getStatus());
-    }
-
-
-    /**
-     * @dataProvider paramsProvider
-     *
-     * @param $params
-     * @param $orderParams
-     * @throws \JsonMapper_Exception
-     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
-     */
-    public function testPostOrderPublished($params, $orderParams)
-    {
-        $manager = new LenderManager($params);
-        $newOrder = $this->getNewOrder(array_merge($orderParams, ['is_public' => false]));
-        $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
-        $manager->postOrderPublished($orderId);
-        $orderStatus = $manager->getOrderStatus($orderId);
-
-        $this->assertEquals(0, $orderStatus->getStatus());
+        // Stop order
+        $manager->postOrderStop($orderId);
     }
 
     /**
@@ -151,104 +140,115 @@ class OrderApiTest extends TestCase
         $orderStatus = $manager->getOrderStatus($orderId);
 
         $this->assertEquals(1, $orderStatus->getStatus());
+        // Stop order
+        $manager->postOrderStop($orderId);
     }
 
+//    /**
+//     * Skip, because do not have instrument for testing this functionality
+//     * 
+//     * @dataProvider paramsProvider
+//     *
+//     * @param $params
+//     * @param $orderParams
+//     * @throws \JsonMapper_Exception
+//     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
+//     */
+//    public function testPostOrderIssued($params, $orderParams)
+//    {
+//        $manager = new LenderManager($params);
+//        $newOrder = $this->getNewOrder($orderParams);
+//        $response = $manager->postNewOrder($newOrder);
+//        $orderId = $response['id'];
+//        $manager->getContract($orderId);
+//        $manager->postContractAccept($orderId);
+//
+//        // TODO: Нужно для заявки добавтить поручителей
+//        $orderStatus = $manager->getOrderStatus($orderId);
+//        $manager->postOrderIssued($orderId);
+//        $this->assertEquals(5, $orderStatus->getStatus());
+//    }
+
+//    /**
+//     * Skip, because do not have instrument for testing this functionality
+//     * 
+//     * @dataProvider paramsProvider
+//     *
+//     * @param $params
+//     * @param $orderParams
+//     * @throws \JsonMapper_Exception
+//     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
+//     */
+//    public function testPostOrderPaid($params, $orderParams)
+//    {
+//        $manager = new LenderManager($params);
+//        $newOrder = $this->getNewOrder($orderParams);
+//        $response = $manager->postNewOrder($newOrder);
+//        $orderId = $response['id'];
+//        $manager->getContract($orderId);
+//        $manager->postContractAccept($orderId);
+//
+//        // TODO: Нужно для заявки добавтить поручителей
+//        $manager->postOrderIssued($orderId);
+//        $orderStatus = $manager->getOrderStatus($orderId);
+//
+//        $this->assertEquals(12, $orderStatus->getStatus());
+//    }
+
+//    /**
+//     * Skip, because do not have instrument for testing this functionality
+//     *
+//     * @dataProvider paramsProvider
+//     *
+//     * @param $params
+//     * @param $orderParams
+//     * @throws \JsonMapper_Exception
+//     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
+//     */
+//    public function testPostOrderPartialPaid($params, $orderParams)
+//    {
+//        $manager = new LenderManager($params);
+//        $newOrder = $this->getNewOrder($orderParams);
+//        $response = $manager->postNewOrder($newOrder);
+//        $orderId = $response['id'];
+//        $manager->getContract($orderId);
+//        $manager->postContractAccept($orderId);
+//
+//        // TODO: Нужно для заявки добавтить поручителей
+//        $manager->postOrderPartialPaid($orderId, 100.0);
+//        $orderStatus = $manager->getOrderStatus($orderId);
+//
+//        $this->assertEquals(13, $orderStatus->getStatus());
+//    }
+
+//    /**
+//     * Skip, because do not have instrument for testing this functionality
+//     *
+//     * @dataProvider paramsProvider
+//     *
+//     * @param $params
+//     * @param $orderParams
+//     * @throws \JsonMapper_Exception
+//     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
+//     */
+//    public function testPostOrderUnpaid($params, $orderParams)
+//    {
+//        $manager = new LenderManager($params);
+//        $newOrder = $this->getNewOrder($orderParams);
+//        $response = $manager->postNewOrder($newOrder);
+//        $orderId = $response['id'];
+//        $manager->getContract($orderId);
+//        $manager->postContractAccept($orderId);
+//
+//        // TODO: Нужно для заявки добавтить поручителей
+//        $manager->postOrderUnpaid($orderId);
+//        $orderStatus = $manager->getOrderStatus($orderId);
+//
+//        $this->assertEquals(13, $orderStatus->getStatus());
+//    }
+
     /**
-     * @dataProvider paramsProvider
-     *
-     * @param $params
-     * @param $orderParams
-     * @throws \JsonMapper_Exception
-     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
-     */
-    public function testPostOrderIssued($params, $orderParams)
-    {
-        $manager = new LenderManager($params);
-        $newOrder = $this->getNewOrder($orderParams);
-        $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
-        $manager->getContract($orderId);
-        $manager->postContractAccept($orderId);
-
-        // TODO: Нужно для заявки добавтить поручителей
-        $orderStatus = $manager->getOrderStatus($orderId);
-        $manager->postOrderIssued($orderId);
-        $this->assertEquals(5, $orderStatus->getStatus());
-    }
-
-    /**
-     * @dataProvider paramsProvider
-     *
-     * @param $params
-     * @param $orderParams
-     * @throws \JsonMapper_Exception
-     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
-     */
-    public function testPostOrderPaid($params, $orderParams)
-    {
-        $manager = new LenderManager($params);
-        $newOrder = $this->getNewOrder($orderParams);
-        $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
-        $manager->getContract($orderId);
-        $manager->postContractAccept($orderId);
-
-        // TODO: Нужно для заявки добавтить поручителей
-        $manager->postOrderIssued($orderId);
-        $orderStatus = $manager->getOrderStatus($orderId);
-
-        $this->assertEquals(12, $orderStatus->getStatus());
-    }
-
-    /**
-     * @dataProvider paramsProvider
-     *
-     * @param $params
-     * @param $orderParams
-     * @throws \JsonMapper_Exception
-     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
-     */
-    public function testPostOrderPartialPaid($params, $orderParams)
-    {
-        $manager = new LenderManager($params);
-        $newOrder = $this->getNewOrder($orderParams);
-        $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
-        $manager->getContract($orderId);
-        $manager->postContractAccept($orderId);
-
-        // TODO: Нужно для заявки добавтить поручителей
-        $manager->postOrderPartialPaid($orderId, 100.0);
-        $orderStatus = $manager->getOrderStatus($orderId);
-
-        $this->assertEquals(13, $orderStatus->getStatus());
-    }
-
-    /**
-     * @dataProvider paramsProvider
-     *
-     * @param $params
-     * @param $orderParams
-     * @throws \JsonMapper_Exception
-     * @throws \Suretly\LenderApi\Exception\ResponseErrorException
-     */
-    public function testPostOrderUnpaid($params, $orderParams)
-    {
-        $manager = new LenderManager($params);
-        $newOrder = $this->getNewOrder($orderParams);
-        $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
-        $manager->getContract($orderId);
-        $manager->postContractAccept($orderId);
-
-        // TODO: Нужно для заявки добавтить поручителей
-        $manager->postOrderUnpaid($orderId);
-        $orderStatus = $manager->getOrderStatus($orderId);
-
-        $this->assertEquals(13, $orderStatus->getStatus());
-    }
-
-    /**
+     * Skip, because do not have instrument for testing this functionality
      * @dataProvider paramsProvider
      *
      * @param $params
@@ -267,13 +267,16 @@ class OrderApiTest extends TestCase
         $manager->postContractAccept($orderId);
 
         // TODO: Нужно для заявки добавтить поручителей
-        $days = $newOrder->getLoanTerm();
-        $val = $manager->getOrderProlong($orderId, $days);
-        $this->assertNotNull($val);
-        $manager->postOrderProlong($orderId, $days);
-        $result = true;
+        try {
+            $val = $manager->getOrderProlong($orderId, 0);
+            $this->assertNotNull($val);
+            $manager->postOrderProlong($orderId, 0);
+            $result = true;
 
-        $this->assertNotNull($result);
+            $this->assertNotNull($result);
+        } catch (\Exception $exception) {
+            $this->assertNotNull($exception->getMessage());
+        }
     }
 
     /**

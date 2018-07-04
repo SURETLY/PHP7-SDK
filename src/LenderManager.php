@@ -227,14 +227,6 @@ class LenderManager implements
     /**
      * @inheritDoc
      */
-    public function postOrderPublished(string $id): void
-    {
-        $this->httpClient->post(Route::ORDER_PUBLISHED, $this->getParamId($id));
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function postOrderPaid(string $id): void
     {
         $this->httpClient->post(Route::ORDER_PAID, $this->getParamId($id));

@@ -3,12 +3,12 @@
 namespace Suretly\LenderApi\Model;
 
 /**
- * Ssn
+ * IdUs
  *
- * Class Ssn
+ * Class IdUs
  * @package Suretly\LenderApi\Model
  */
-class Ssn extends IdentityDocument
+class IdUs extends IdentityDocument
 {
     /**
      * @var string $ssn Номер

@@ -100,8 +100,9 @@ final class Config implements ConfigInterface
     public function getAuthToken(): string
     {
         $randomID = bin2hex(random_bytes(4));
+        $time = time();
 
-        return $this->id . '-' . $randomID . '-' . md5($randomID . $this->token);
+        return $this->id . '-' . $randomID . '-' . $time . '-' .  hash('sha256', $randomID . $this->token . $time);
     }
 
     /**

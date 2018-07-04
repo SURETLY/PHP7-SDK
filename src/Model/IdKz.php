@@ -5,10 +5,10 @@ namespace Suretly\LenderApi\Model;
 /**
  * Казахский паспорт (ID)
  *
- * Class IdKZ
+ * Class IdKz
  * @package Suretly\LenderApi\Model
  */
-class IdKZ extends IdentityDocument
+class IdKz extends IdentityDocument
 {
     /**
      * @var string $number Номер
