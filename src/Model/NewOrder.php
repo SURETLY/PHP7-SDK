@@ -16,19 +16,9 @@ class NewOrder implements \JsonSerializable
     private $uid;
 
     /**
-     * @var bool $is_public Доступна ли заявка публично
-     */
-    private $is_public;
-
-    /**
      * @var Borrower $borrower Информация о заемщике
      */
     private $borrower;
-
-    /**
-     * @var string $credit_score_type Тип скоринга
-     */
-    private $credit_score_type;
 
     /**
      * @var int $user_credit_score Скоринг заемщика
@@ -85,22 +75,6 @@ class NewOrder implements \JsonSerializable
     }
 
     /**
-     * @return bool
-     */
-    public function getPublic(): bool
-    {
-        return $this->is_public;
-    }
-
-    /**
-     * @param bool $is_public
-     */
-    public function setIsPublic(bool $is_public): void
-    {
-        $this->is_public = $is_public;
-    }
-
-    /**
      * @return Borrower
      */
     public function getBorrower(): Borrower
@@ -114,22 +88,6 @@ class NewOrder implements \JsonSerializable
     public function setBorrower(Borrower $borrower): void
     {
         $this->borrower = $borrower;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCreditScoreType(): string
-    {
-        return $this->credit_score_type;
-    }
-
-    /**
-     * @param string $credit_score_type
-     */
-    public function setCreditScoreType(string $credit_score_type): void
-    {
-        $this->credit_score_type = $credit_score_type;
     }
 
     /**
