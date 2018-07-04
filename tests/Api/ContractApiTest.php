@@ -25,7 +25,7 @@ class ContractApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
         $contract = $manager->getContract($orderId);
         $this->assertNotNull($contract);
     }
@@ -43,7 +43,7 @@ class ContractApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
         $manager->getContract($orderId);
         $manager->postContractAccept($orderId);
         $this->assertNotNull(true);

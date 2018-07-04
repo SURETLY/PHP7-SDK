@@ -172,11 +172,11 @@ class LenderManager implements
     /**
      * @inheritDoc
      */
-    public function postNewOrder(NewOrder $newOrder): array
+    public function postNewOrder(NewOrder $newOrder): object
     {
         $response = $this->httpClient->post(Route::ORDER_NEW, [self::BODY => $newOrder]);
 
-        return $this->getData($response, true);
+        return $this->getData($response);
     }
 
     /**

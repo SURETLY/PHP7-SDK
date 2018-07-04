@@ -99,7 +99,7 @@ try {
     $r = mt_rand(0, 100);
     if ($r >= 10) {
         echo "\nПрикрепляем фото заемщика к заявке id: " . $orderID;
-        $sdk->postUploadImageOrder($orderID, __DIR__ . '/assets/avatar.png');
+        $sdk->postUploadImageOrder($orderID, realpath(__DIR__ . '/assets/avatar.png'));
         sleep(5);
         echo "\nЗаемщик подписал договор";
         $sdk->postContractAccept($orderID);
