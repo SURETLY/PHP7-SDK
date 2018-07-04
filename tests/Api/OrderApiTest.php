@@ -25,7 +25,7 @@ class OrderApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
         $order = $manager->getOrder($orderId);
 
         $this->assertEquals($orderId, $order->getId());
@@ -46,7 +46,7 @@ class OrderApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
         $url = $manager->getOrderPublicUrl($orderId);
 
         $this->assertNotNull($url);
@@ -67,9 +67,9 @@ class OrderApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
 
-        $path = __DIR__ . '/../../examples/assests/avatar.png';
+        $path = realpath(__DIR__ . '/../../examples/assets/avatar.png');
         $manager->postUploadImageOrder($orderId, $path);
         $result = true;
 
@@ -91,7 +91,7 @@ class OrderApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
         $orderStatus = $manager->getOrderStatus($orderId);
 
         $this->assertEquals(0, $orderStatus->getStatus());
@@ -112,7 +112,7 @@ class OrderApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
         $manager->postOrderStop($orderId);
         $orderStatus = $manager->getOrderStatus($orderId);
 
@@ -134,7 +134,7 @@ class OrderApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
         $manager->getContract($orderId);
         $manager->postContractAccept($orderId);
         $orderStatus = $manager->getOrderStatus($orderId);
@@ -159,7 +159,7 @@ class OrderApiTest extends TestCase
 //        $manager = new LenderManager($params);
 //        $newOrder = $this->getNewOrder($orderParams);
 //        $response = $manager->postNewOrder($newOrder);
-//        $orderId = $response['id'];
+//        $orderId = $response->id;
 //        $manager->getContract($orderId);
 //        $manager->postContractAccept($orderId);
 //
@@ -184,7 +184,7 @@ class OrderApiTest extends TestCase
 //        $manager = new LenderManager($params);
 //        $newOrder = $this->getNewOrder($orderParams);
 //        $response = $manager->postNewOrder($newOrder);
-//        $orderId = $response['id'];
+//        $orderId = $response->id;
 //        $manager->getContract($orderId);
 //        $manager->postContractAccept($orderId);
 //
@@ -210,7 +210,7 @@ class OrderApiTest extends TestCase
 //        $manager = new LenderManager($params);
 //        $newOrder = $this->getNewOrder($orderParams);
 //        $response = $manager->postNewOrder($newOrder);
-//        $orderId = $response['id'];
+//        $orderId = $response->id;
 //        $manager->getContract($orderId);
 //        $manager->postContractAccept($orderId);
 //
@@ -236,7 +236,7 @@ class OrderApiTest extends TestCase
 //        $manager = new LenderManager($params);
 //        $newOrder = $this->getNewOrder($orderParams);
 //        $response = $manager->postNewOrder($newOrder);
-//        $orderId = $response['id'];
+//        $orderId = $response->id;
 //        $manager->getContract($orderId);
 //        $manager->postContractAccept($orderId);
 //
@@ -262,7 +262,7 @@ class OrderApiTest extends TestCase
         $manager = new LenderManager($params);
         $newOrder = $this->getNewOrder($orderParams);
         $response = $manager->postNewOrder($newOrder);
-        $orderId = $response['id'];
+        $orderId = $response->id;
         $manager->getContract($orderId);
         $manager->postContractAccept($orderId);
 

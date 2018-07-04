@@ -36,11 +36,11 @@ interface OrderApiInterface
      * Создание заявки
      *
      * @param NewOrder $newOrder
-     * @return array
+     * @return \object
      * @throws \JsonMapper_Exception
      * @throws ResponseErrorException
      */
-    public function postNewOrder(NewOrder $newOrder): array;
+    public function postNewOrder(NewOrder $newOrder): object;
 
     /**
      * Загрузка файла с фото заемщика
