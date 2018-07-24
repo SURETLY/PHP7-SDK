@@ -41,27 +41,27 @@ class Address implements \JsonSerializable
     private $house;
 
     /**
-     * @var string $suite Корпус
+     * @var null|string $suite Корпус
      */
     private $suite;
 
     /**
-     * @var string $building Строение
+     * @var null|string $building Строение
      */
     private $building;
 
     /**
-     * @var string $flat Квартира
+     * @var null|string $flat Квартира
      */
     private $flat;
 
     /**
-     * @var string $flat Адрес №1 (сша)
+     * @var null|string $flat Адрес №1 (сша)
      */
     private $address_line_1;
 
     /**
-     * @var string $flat Адрес №2 (сша)
+     * @var null|string $flat Адрес №2 (сша)
      */
     private $address_line_2;
 

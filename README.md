@@ -98,8 +98,7 @@ $feeAmount = $response->fee_amount;
 For example, json data
 ```json
 {
-    "id": "string",
-    "fee_amount": 0
+    "id": "string"
 }
 ```
 
