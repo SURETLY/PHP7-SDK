@@ -39,7 +39,7 @@ class LenderManager implements
      * @param string $server
      * @return LenderManager
      */
-    public static function create($id, $token, $server = 'develop')
+    public static function create($id, $token, $server = 'sandbox')
     {
         return new LenderManager(compact('id', 'token', 'server'));
     }
@@ -195,7 +195,7 @@ class LenderManager implements
             ],
             'multipart' => [
                 [
-                    'name' => 'upfile',
+                    'name' => 'file',
                     'contents' => file_get_contents($realPathToFile),
                     'filename' => $filename ?? pathinfo($realPathToFile)['basename']
                 ]
