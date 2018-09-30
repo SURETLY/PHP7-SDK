@@ -289,7 +289,7 @@ class OrderApiTest extends TestCase
         return [
             [
                 'params' => [
-                    'id' => '59ca100acea0997574cef785',
+                    'id' => 'q2',
                     'token' => '317',
                     'server' => 'develop'
                 ],
@@ -344,7 +344,7 @@ class OrderApiTest extends TestCase
                     ],
                     'credit_score_type' => 'default',
                     'user_credit_score' => 500,
-                    'loan_sum' => 5123.00,
+                    'loan_sum' => 25000.00,
                     'loan_term' => 30,
                     'loan_rate' => 56.34,
                     'currency_code' => 'RUB'
