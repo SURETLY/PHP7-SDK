@@ -6,7 +6,7 @@ use Suretly\LenderApi\LenderManager;
 require __DIR__ . '/../vendor/autoload.php';
 
 // Создание основного класса SDK
-$sdk = LenderManager::create('59ca100acea0997574cef785', '317', 'develop');
+$sdk = LenderManager::create('q2', '317', 'develop');
 
 /**
  * @return object
@@ -65,7 +65,7 @@ function getNewOrder()
         ],
         'credit_score_type' => 'default',
         'user_credit_score' => 10,
-        'loan_sum' => 5000.00,
+        'loan_sum' => 25000.00,
         'loan_term' => 30,
         'loan_rate' => 56.34,
         'currency_code' => 'RUB'
