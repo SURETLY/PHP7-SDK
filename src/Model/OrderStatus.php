@@ -31,7 +31,7 @@ class OrderStatus
     private $sum;
 
     /**
-     * @var int $cost текущая стоимость услуг поручителей для заемщика
+     * @var float $cost текущая стоимость услуг поручителей для заемщика
      */
     private $cost;
 
@@ -125,17 +125,17 @@ class OrderStatus
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getCost(): int
+    public function getCost(): float
     {
         return $this->cost;
     }
 
     /**
-     * @param int $cost
+     * @param float $cost
      */
-    public function setCost(int $cost): void
+    public function setCost(float $cost): void
     {
         $this->cost = $cost;
     }
